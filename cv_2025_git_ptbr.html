@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Augusto Medeiros - Analista de Garantia da Qualidade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+            border-radius: 2px;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(52,152,219,0.1), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .experience-item:hover::before {
+            width: 100%;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-weight: 500;
+            color: #3498db;
+            margin-bottom: 8px;
+        }
+
+        .period {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .responsibilities {
+            list-style: none;
+            padding: 0;
+        }
+
+        .responsibilities li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .responsibilities li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid #3498db;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+        }
+
+        .languages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231,76,60,0.4);
+        }
+
+        .soft-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .soft-skill {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .soft-skill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155,89,182,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .name {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .languages {
+                justify-content: center;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header::before {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">AUGUSTO MEDEIROS</h1>
+                <h2 class="title">Analista de Garantia da Qualidade</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>cgmaugusto@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>+55 81 99719-8932</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Recife, Brasil</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">Experiência Profissional</h3>
+                
+                <div class="experience-item">
+                    <div class="job-title">Estagiário de Garantia da Qualidade</div>
+                    <div class="company">IC Tecnologia</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>Maio 2025 – Presente | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Execução de testes funcionais e automatizados em APIs utilizando Postman</li>
+                        <li>Identificação de bugs e documentação abrangente</li>
+                        <li>Colaboração com equipes de desenvolvimento para otimizar processos de teste</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Assessor Parlamentar</div>
+                    <div class="company">Câmara Municipal</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>Abr 2023 – Mai 2024 | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Gestão de agenda e organização de documentos</li>
+                        <li>Coordenação de serviços públicos e articulação com partes interessadas</li>
+                        <li>Apoio administrativo para processos legislativos</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Agente de Cadastramento</div>
+                    <div class="company">Programa Chapéu de Palha</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>2021 – 2023 | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Análise de documentos e critérios para cadastramento de trabalhadores rurais</li>
+                        <li>Atendimento presencial em regiões remotas</li>
+                        <li>Validação de dados e verificação de conformidade</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Gerente Comercial</div>
+                    <div class="company">Donna Coxita</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>2019 – 2020 | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Gestão de equipe, operações de caixa e controle de estoque</li>
+                        <li>Excelência no atendimento ao cliente e otimização da experiência</li>
+                        <li>Melhoria de processos internos e eficiência operacional</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Mediador Cultural e Educativo</div>
+                    <div class="company">Museu do Estado de Pernambuco / Kahal Zur Israel</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>2015 – 2018 | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Visitas guiadas e serviços educativos para público e escolas</li>
+                        <li>Pesquisa histórica e apoio a exposições</li>
+                        <li>Mediação de conflitos e estratégias de comunicação adaptativa</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Mediador Cultural e Educativo</div>
+                    <div class="company">Museu do Estado de Pernambuco</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>2014 – 2015 | Recife, Brasil</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Visitas guiadas para exposições itinerantes</li>
+                        <li>Resolução de conflitos e comunicação adaptada para públicos diversos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Formação Acadêmica</h3>
+                
+                <div class="education-item">
+                    <div class="job-title">Tecnólogo em Análise e Desenvolvimento de Sistemas</div>
+                    <div class="company">UNINASSAU – Centro Universitário Maurício de Nassau</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>Fev 2025 – Em andamento</span>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="job-title">Bacharelado em História</div>
+                    <div class="company">Universidade Federal de Pernambuco (UFPE)</div>
+                    <div class="period">
+                        <span>📅</span>
+                        <span>2014 – 2017 | Incompleto</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Competências Técnicas</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Desenvolvimento & Testes</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">Cypress</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Dev Tools</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Garantia da Qualidade</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Testes Manuais</span>
+                            <span class="skill-tag">Testes Automatizados</span>
+                            <span class="skill-tag">Planejamento de Testes</span>
+                            <span class="skill-tag">Relatório de Bugs</span>
+                            <span class="skill-tag">APIs REST</span>
+                            <span class="skill-tag">Kanban</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Idiomas</h3>
+                <div class="languages">
+                    <div class="language-item">
+                        <strong>Inglês:</strong> Avançado
+                    </div>
+                    <div class="language-item">
+                        <strong>Português:</strong> Nativo
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Competências Comportamentais</h3>
+                <div class="soft-skills">
+                    <span class="soft-skill">Comunicação</span>
+                    <span class="soft-skill">Trabalho em Equipe</span>
+                    <span class="soft-skill">Resolução de Conflitos</span>
+                    <span class="soft-skill">Relacionamento Interpessoal</span>
+                    <span class="soft-skill">Experiência Multicultural</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
