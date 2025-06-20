@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Augusto Medeiros - Analista de Garantia da Qualidade</title>
+    <title>Augusto Medeiros - Garantia de Qualidade</title>
     <style>
         * {
             margin: 0;
@@ -18,6 +18,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
 
         .resume-container {
@@ -28,6 +29,16 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
             position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
@@ -98,11 +109,12 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .contact-item:hover {
             background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
         }
 
         .content {
@@ -111,6 +123,22 @@
 
         .section {
             margin-bottom: 35px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .section-title {
@@ -121,6 +149,13 @@
             padding-bottom: 8px;
             border-bottom: 3px solid #3498db;
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-title:hover {
+            color: #3498db;
+            transform: translateX(10px);
         }
 
         .section-title::after {
@@ -132,6 +167,11 @@
             height: 3px;
             background: #e74c3c;
             border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100px;
         }
 
         .experience-item, .education-item {
@@ -143,6 +183,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .experience-item::before {
@@ -161,8 +202,9 @@
         }
 
         .experience-item:hover, .education-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left-width: 8px;
         }
 
         .job-title {
@@ -170,6 +212,11 @@
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .experience-item:hover .job-title {
+            color: #3498db;
         }
 
         .company {
@@ -197,6 +244,12 @@
             padding-left: 20px;
             position: relative;
             color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .responsibilities li:hover {
+            color: #2c3e50;
+            padding-left: 25px;
         }
 
         .responsibilities li::before {
@@ -205,6 +258,12 @@
             left: 0;
             color: #3498db;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .responsibilities li:hover::before {
+            color: #e74c3c;
+            transform: scale(1.2);
         }
 
         .skills-grid {
@@ -218,6 +277,13 @@
             padding: 20px;
             border-radius: 10px;
             border-top: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-top-width: 8px;
         }
 
         .skill-category h4 {
@@ -240,11 +306,29 @@
             font-size: 0.85em;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
         }
 
         .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(52,152,219,0.4);
         }
 
         .languages {
@@ -261,11 +345,32 @@
             font-weight: 500;
             box-shadow: 0 5px 15px rgba(231,76,60,0.3);
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover::after {
+            width: 300px;
+            height: 300px;
         }
 
         .language-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(231,76,60,0.4);
+            box-shadow: 0 15px 35px rgba(231,76,60,0.4);
         }
 
         .soft-skills {
@@ -281,11 +386,36 @@
             border-radius: 25px;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
         .soft-skill:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(155,89,182,0.4);
+            transform: translateY(-2px) rotate(2deg);
+            box-shadow: 0 10px 25px rgba(155,89,182,0.4);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-lr;
+            font-size: 12px;
+            color: #7f8c8d;
+            opacity: 0.7;
+            z-index: 100;
         }
 
         @media (max-width: 768px) {
@@ -305,6 +435,10 @@
             .languages {
                 justify-content: center;
             }
+
+            .scroll-indicator {
+                display: none;
+            }
         }
 
         @media print {
@@ -316,26 +450,36 @@
             .resume-container {
                 box-shadow: none;
                 border-radius: 0;
+                opacity: 1 !important;
+                transform: none !important;
             }
             
             .header::before {
                 animation: none;
             }
+
+            .progress-bar,
+            .scroll-indicator {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="progress-bar"></div>
+    <div class="scroll-indicator">ROLAR</div>
+    
     <div class="resume-container">
         <div class="header">
             <div class="header-content">
                 <h1 class="name">AUGUSTO MEDEIROS</h1>
-                <h2 class="title">Analista de Garantia da Qualidade</h2>
+                <h2 class="title">Profissional de Garantia de Qualidade</h2>
                 <div class="contact-info">
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="copyToClipboard('cgmaugusto@gmail.com')">
                         <span>📧</span>
                         <span>cgmaugusto@gmail.com</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="copyToClipboard('+55 81 99719-8932')">
                         <span>📱</span>
                         <span>+55 81 99719-8932</span>
                     </div>
@@ -352,14 +496,14 @@
                 <h3 class="section-title">Experiência Profissional</h3>
                 
                 <div class="experience-item">
-                    <div class="job-title">Estagiário de Garantia da Qualidade</div>
+                    <div class="job-title">Estagiário de Garantia de Qualidade</div>
                     <div class="company">IC Tecnologia</div>
                     <div class="period">
                         <span>📅</span>
-                        <span>Maio 2025 – Presente | Recife, Brasil</span>
+                        <span>Mai 2025 – Presente | Recife, Brasil</span>
                     </div>
                     <ul class="responsibilities">
-                        <li>Execução de testes funcionais e automatizados em APIs utilizando Postman</li>
+                        <li>Execução de testes funcionais e automatizados em APIs usando Postman</li>
                         <li>Identificação de bugs e documentação abrangente</li>
                         <li>Colaboração com equipes de desenvolvimento para otimizar processos de teste</li>
                     </ul>
@@ -374,8 +518,8 @@
                     </div>
                     <ul class="responsibilities">
                         <li>Gestão de agenda e organização de documentos</li>
-                        <li>Coordenação de serviços públicos e articulação com partes interessadas</li>
-                        <li>Apoio administrativo para processos legislativos</li>
+                        <li>Coordenação de serviços públicos e articulação com stakeholders</li>
+                        <li>Suporte administrativo para processos legislativos</li>
                     </ul>
                 </div>
 
@@ -387,8 +531,8 @@
                         <span>2021 – 2023 | Recife, Brasil</span>
                     </div>
                     <ul class="responsibilities">
-                        <li>Análise de documentos e critérios para cadastramento de trabalhadores rurais</li>
-                        <li>Atendimento presencial em regiões remotas</li>
+                        <li>Análise de documentos e critérios para cadastro de trabalhadores rurais</li>
+                        <li>Prestação de serviços presenciais em regiões remotas</li>
                         <li>Validação de dados e verificação de conformidade</li>
                     </ul>
                 </div>
@@ -416,7 +560,7 @@
                     </div>
                     <ul class="responsibilities">
                         <li>Visitas guiadas e serviços educativos para público e escolas</li>
-                        <li>Pesquisa histórica e apoio a exposições</li>
+                        <li>Pesquisa histórica e suporte a exposições</li>
                         <li>Mediação de conflitos e estratégias de comunicação adaptativa</li>
                     </ul>
                 </div>
@@ -429,8 +573,8 @@
                         <span>2014 – 2015 | Recife, Brasil</span>
                     </div>
                     <ul class="responsibilities">
-                        <li>Visitas guiadas para exposições itinerantes</li>
-                        <li>Resolução de conflitos e comunicação adaptada para públicos diversos</li>
+                        <li>Visitas guiadas para exposições temporárias</li>
+                        <li>Resolução de conflitos e comunicação adaptada para diversos públicos</li>
                     </ul>
                 </div>
             </div>
@@ -458,24 +602,26 @@
             </div>
 
             <div class="section">
-                <h3 class="section-title">Competências Técnicas</h3>
+                <h3 class="section-title">Habilidades Técnicas</h3>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4>Desenvolvimento & Testes</h4>
+                        <h4>Ferramentas de Desenvolvimento</h4>
                         <div class="skill-tags">
-                            <span class="skill-tag">HTML</span>
-                            <span class="skill-tag">CSS</span>
-                            <span class="skill-tag">Cypress</span>
-                            <span class="skill-tag">Postman</span>
-                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            
+                            <span class="skill-tag">Git/GitHub</span>
+                            <span class="skill-tag">VS Code</span>
                             <span class="skill-tag">Dev Tools</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h4>Garantia da Qualidade</h4>
+                        <h4>Garantia de Qualidade</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Testes Manuais</span>
                             <span class="skill-tag">Testes Automatizados</span>
+                            <span class="skill-tag">Cypress</span>
+                            <span class="skill-tag">Postman</span>
                             <span class="skill-tag">Planejamento de Testes</span>
                             <span class="skill-tag">Relatório de Bugs</span>
                             <span class="skill-tag">APIs REST</span>
@@ -503,11 +649,72 @@
                     <span class="soft-skill">Comunicação</span>
                     <span class="soft-skill">Trabalho em Equipe</span>
                     <span class="soft-skill">Resolução de Conflitos</span>
-                    <span class="soft-skill">Relacionamento Interpessoal</span>
+                    <span class="soft-skill">Habilidades Interpessoais</span>
                     <span class="soft-skill">Experiência Multicultural</span>
+                    <span class="soft-skill">Resolução de Problemas</span>
+                    <span class="soft-skill">Adaptabilidade</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Inicializar interações
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollEffects();
+            
+            // Adicionar efeito de clique
+            document.querySelectorAll('.skill-tag, .contact-item, .language-item, .soft-skill').forEach(el => {
+                el.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+
+        function initScrollEffects() {
+            const progressBar = document.querySelector('.progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Criar uma notificação temporária
+                const notification = document.createElement('div');
+                notification.textContent = 'Copiado para a área de transferência!';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #2ecc71;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    font-size: 14px;
+                    animation: slideIn 0.3s ease;
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.remove(), 2000);
+            });
+        }
+
+        // Adicionar CSS dinâmico para animação de slide-in
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
